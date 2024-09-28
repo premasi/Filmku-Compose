@@ -22,7 +22,7 @@ fun FilmkuBottomNavigation(
         }
 
         composable(EnumBottomNavigationScreen.SearchScreen.name){
-            SearchScreen()
+            SearchScreen(navController)
         }
 
         composable(EnumBottomNavigationScreen.ProfileScreen.name){

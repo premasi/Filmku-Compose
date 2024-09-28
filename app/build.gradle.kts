@@ -1,3 +1,5 @@
+import com.android.build.api.variant.BuildConfigField
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
@@ -15,7 +17,8 @@ android {
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
-
+        buildConfigField("String", "BASE_URL", "\"https://api.themoviedb.org/3/\"")
+        buildConfigField("String", "AUTH", "\"Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4YjFhYmNhMmExODRkZDdmOWFlY2QzYzM1ZWZlMzllOCIsIm5iZiI6MTcyNzQ4ODI5NC41NDg0ODIsInN1YiI6IjY2YjFjZTZiMTQ0YTJiZDFhOTk5YTZmMiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.iVOUA_O4iGxbB_Yweiyte9qNI5c79n_5QVw4JF4ftMA\"")
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
             useSupportLibrary = true
@@ -39,6 +42,7 @@ android {
         jvmTarget = "1.8"
     }
     buildFeatures {
+        buildConfig = true
         compose = true
     }
     composeOptions {
@@ -59,6 +63,22 @@ dependencies {
 
     //navigation
     implementation("androidx.navigation:navigation-compose:2.8.1")
+
+    //retrofit
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation("com.squareup.okhttp3:logging-interceptor:4.12.0")
+
+    //view model compose
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.6")
+
+    //coroutines
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.8.1")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.1")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.8.1")
+
+    //coil
+    implementation("io.coil-kt:coil-compose:2.7.0")
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
